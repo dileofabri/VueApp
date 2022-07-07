@@ -35,8 +35,8 @@ const addTodo = () => {
   })
 }
 
-const removeTodo = (todo) => {
-  todos.value = todos.value.filter((t) => t !== todo)
+const removeTodo = (todos) => {
+  todos.value = todos.value.filter((t) => t !== todos)
 }
 
 onMounted(() => {
@@ -101,22 +101,22 @@ onMounted(() => {
       <h3>TODO LIST</h3>
       <div class="list" id="todo-list">
 
-        <div v-bind:key="todo in todos_asc" :class="`todo-item ${todo.done && 'done'}`">
+        <div v-bind:key="todos in todos_asc" :class="`todo-item ${todos.done && 'done'}`">
           <label>
-            <input type="checkbox" v-model="todo.done" />
+            <input type="checkbox" v-model="todos.done" />
             <span :class="`bubble ${
-							todo.category === 'business'
+							todos.category === 'business'
 								? 'business'
 								: 'personal'
 						}`"></span>
           </label>
 
           <div class="todo-content">
-            <input type="text" v-model="todo.content" />
+            <input type="text" v-model="todos.content" />
           </div>
 
           <div class="actions">
-            <button class="delete" @click="removeTodo(todo)">Delete</button>
+            <button class="delete" @click="removeTodo(todos)">Delete</button>
           </div>
         </div>
 
